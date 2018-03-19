@@ -1,0 +1,28 @@
+version: '2'
+
+services:
+
+  postgres:
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: test
+      POSTGRES_USER: missao
+    volumes:
+      - postgres-drupal-db:/var/lib/postgresql/data
+
+  drupal:
+    image: drupal
+    volumes:
+      - drupal-modules:/var/www/html/modules
+      - drupal-profiles:/var/www/html/profiles
+      - drupal-sites:/var/www/html/sites
+      - drupal-themes:/var/www/html/themes
+    ports:
+      - 8080:80
+
+volumes:
+  postgres-drupal-db:
+  drupal-modules:
+  drupal-profiles:
+  drupal-sites:
+  drupal-themes:
